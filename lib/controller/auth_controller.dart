@@ -45,7 +45,7 @@ class AuthController extends GetxController {
         .createUserWithEmailAndPassword(email: email!, password: password!)
         .then((value) {
       isLoading(false);
-
+print('user created........');
       /// Navigate user to profile screen
       Get.to(() => ProfileScreen());
     }).catchError((e) {

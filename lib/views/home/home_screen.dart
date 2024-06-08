@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newevent/controller/data_controller.dart';
 import 'package:newevent/views/widgets/custom_app_bar.dart';
 import 'package:newevent/views/widgets/events_feed_widget.dart';
 
@@ -14,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  //DataController dataController = Get.find<DataController>();
+  DataController dataController = Get.find<DataController>();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: Get.height * 0.02,
                 ),
                 EventsFeed(),
-             //   Obx(()=> dataController.isUsersLoading.value? Center(child: CircularProgressIndicator(),) : EventsIJoined())
+                Obx(()=> dataController.isUsersLoading.value? Center(
+                  child: CircularProgressIndicator(),) : EventsIJoined())
               ],
             ),
           ),

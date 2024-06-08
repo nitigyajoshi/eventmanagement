@@ -31,100 +31,101 @@ List<AustinYogaWork> austin = [
   Widget EventsFeed() {
 //return Text('Event Feed yet to build');
 
+DataController dataController = Get.find<DataController>();
 
-
-return Column(
-      children: [
-        Row(
-          children: [
-            InkWell(
-              onTap: () {
-                Get.to(() => ProfileScreen());
-              },
-              child: CircleAvatar(
-                radius: 25,
-                backgroundColor: Colors.blue,
-                backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7YRXQ-A30sm3Zupjvy-7OGy5EiNWu4Psd2lFk84Ybu1Ooq34wgkZzcApfxUv8Dr-krMw&usqp=CAU'),
-              ),
-            ),
-            SizedBox(
-              width: 12,
-            ),
-            Text(
+// return Column(
+//       children: [
+//         Row(
+//           children: [
+//             InkWell(
+//               onTap: () {
+//                 Get.to(() => ProfileScreen());
+//               },
+//               child: CircleAvatar(
+//                 radius: 25,
+//                 backgroundColor: Colors.blue,
+//                 backgroundImage:
+//                  NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7YRXQ-A30sm3Zupjvy-7OGy5EiNWu4Psd2lFk84Ybu1Ooq34wgkZzcApfxUv8Dr-krMw&usqp=CAU'),
+//               ),
+//             ),
+//             SizedBox(
+//               width: 12,
+//             ),
+//             Text(
             
-            'Rock Avi',
-            //  '${user.get('first')} ${user.get('last')}',
-              style: GoogleFonts.raleway(
-                  fontWeight: FontWeight.w700, fontSize: 18),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: Get.height * 0.01,
-        ),
-        buildCard(
-            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7YRXQ-A30sm3Zupjvy-7OGy5EiNWu4Psd2lFk84Ybu1Ooq34wgkZzcApfxUv8Dr-krMw&usqp=CAU',
-
-            
-            //eventImage,
-            text:'Dashin Special',
-            
-            // event.get('event_name'),
-           // eventData: DocumentSnapshot.object,
-            //event,
-            func: () {
-             // Get.to(() => EventPageView(event,user));
-            }),
-        SizedBox(
-          height: 15,
-        ),
-
-
-         Row(
-          children: [
-            InkWell(
-              onTap: () {
-                Get.to(() => ProfileScreen());
-              },
-              child: CircleAvatar(
-                radius: 25,
-                backgroundColor: Colors.blue,
-                backgroundImage: NetworkImage('https://helios-i.mashable.com/imagery/articles/01GFZjPqzBpVYEfUSUNiuoa/hero-image.fill.size_1200x900.v1623384687.jpg'),
-              ),
-            ),
-            SizedBox(
-              width: 12,
-            ),
-            Text(
-            
-            'Thanos',
-            //  '${user.get('first')} ${user.get('last')}',
-              style: GoogleFonts.raleway(
-                  fontWeight: FontWeight.w700, fontSize: 18),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: Get.height * 0.01,
-        ),
-        buildCard(
-            image: 'https://img.freepik.com/free-photo/new-year-banner-with-fireworks_23-2149539970.jpg',
+//             //'Rock Avi',
+//              '${user.get('first')} ${user.get('last')}',
+//               style: GoogleFonts.raleway(
+//                   fontWeight: FontWeight.w700, fontSize: 18),
+//             ),
+//           ],
+//         ),
+//         SizedBox(
+//           height: Get.height * 0.01,
+//         ),
+//         buildCard(
+//             image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7YRXQ-A30sm3Zupjvy-7OGy5EiNWu4Psd2lFk84Ybu1Ooq34wgkZzcApfxUv8Dr-krMw&usqp=CAU',
 
             
-            //eventImage,
-            text:'New Year eve',
+//             //eventImage,
+//             text:'Dashin Special',
             
-            // event.get('event_name'),
-           // eventData: DocumentSnapshot.object,
-            //event,
-            func: () {
-             // Get.to(() => EventPageView(event,user));
-            }),
-        SizedBox(
-          height: 15,
-        ),
-      ],
-    );
+//             // event.get('event_name'),
+//            // eventData: DocumentSnapshot.object,
+//             //event,
+//             func: () {
+//              // Get.to(() => EventPageView(event,user));
+//             }),
+//         SizedBox(
+//           height: 15,
+//         ),
+
+
+//          Row(
+//           children: [
+//             InkWell(
+//               onTap: () {
+//                 Get.to(() => ProfileScreen());
+//               },
+//               child: CircleAvatar(
+//                 radius: 25,
+//                 backgroundColor: Colors.blue,
+//                 backgroundImage: NetworkImage('https://helios-i.mashable.com/imagery/articles/01GFZjPqzBpVYEfUSUNiuoa/hero-image.fill.size_1200x900.v1623384687.jpg'),
+//               ),
+//             ),
+//             SizedBox(
+//               width: 12,
+//             ),
+//             Text(
+            
+//             'Thanos',
+//             //  '${user.get('first')} ${user.get('last')}',
+//               style: GoogleFonts.raleway(
+//                   fontWeight: FontWeight.w700, fontSize: 18),
+//             ),
+//           ],
+//         ),
+//         SizedBox(
+//           height: Get.height * 0.01,
+//         ),
+//         buildCard(
+//             image: 'https://img.freepik.com/free-photo/new-year-banner-with-fireworks_23-2149539970.jpg',
+
+            
+//             //eventImage,
+//             text:'New Year eve',
+            
+//             // event.get('event_name'),
+//            // eventData: DocumentSnapshot.object,
+//             //event,
+//             func: () {
+//              // Get.to(() => EventPageView(event,user));
+//             }),
+//         SizedBox(
+//           height: 15,
+//         ),
+//       ],
+//     );
 
 
 
@@ -145,12 +146,14 @@ return Column(
 
 
 
-//     return Obx(()=> dataController.isEventsLoading.value? Center(child: CircularProgressIndicator(),) : ListView.builder(
-//       shrinkWrap: true,
-//       physics: NeverScrollableScrollPhysics(),
-//       itemBuilder: (ctx,i){
-//       return EventItem(dataController.allEvents[i]);
-//     },itemCount: dataController.allEvents.length,));
+    return Obx(()=> dataController.isEventsLoading.value? Center(child: CircularProgressIndicator(),) : ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (ctx,i){
+Map<String, dynamic>? d= dataController.allEvents[0] .data()as Map<String, dynamic>?;
+        print('all eve  ..${d}');
+      return EventItem(dataController.allEvents[i]);
+    },itemCount: dataController.allEvents.length,));
 
 
 

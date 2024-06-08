@@ -56,10 +56,13 @@ class DataController extends GetxController{
   }
 
   getMyDocument(){
-    FirebaseFirestore.instance.collection('users').doc(auth.currentUser!.uid)
+
+    FirebaseFirestore.instance.collection('flusers').doc(auth.currentUser?.uid??'1')
         .snapshots().listen((event) {
           myDocument = event;
+   
     });
+    
   }
   
  Future<String> uploadImageToFirebase(File file)async{

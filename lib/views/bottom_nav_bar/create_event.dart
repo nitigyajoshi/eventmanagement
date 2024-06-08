@@ -1067,7 +1067,7 @@ children: [    myText(
     }
 
     setState(() {});
-    Navigator.pop(context);
+   // Navigator.pop(context);
   }
 
   getVideoDialog(ImageSource source) async {
@@ -1114,13 +1114,13 @@ children: [    myText(
               children: [
                 IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                    //  Navigator.pop(context);
                       imageDialog(context, true);
                     },
                     icon: Icon(Icons.image)),
                 IconButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                    //  Navigator.pop(context);
                       imageDialog(context, false);
                     },
                     icon: Icon(Icons.slow_motion_video_outlined)),

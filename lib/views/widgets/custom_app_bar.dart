@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newevent/utils/color.dart';
+import 'package:newevent/views/auth/login_signup.dart';
 
 
 import 'my_widgets.dart';
@@ -25,21 +27,32 @@ Widget CustomAppBar(){
                         height: 22,
                         child: InkWell(
                           onTap: () {
-                        //    Get.to(() => UserNotificationScreen());
+                          //  Get.to(() => UserNotificationScreen());
                           },
-                          child: Image.asset('assets/Frame.png'),
+                          child:
+                         
+                           Image.asset('assets/Frame.png'),
                         ),
                       ),
                       SizedBox(
                         width: Get.width * 0.04,
                       ),
                       InkWell(
-                        onTap: () {},
-                        child: Container(
-                          width: 22,
-                          height: 20,
-                          child: Image.asset(
-                            'assets/menu.png',
+                        onTap: ()async {
+
+                          await FirebaseAuth.instance.signOut();
+                        },
+                        child: GestureDetector(onTap: ()async{
+                          await FirebaseAuth.instance.signOut();
+                          Get.to(LoginView());
+                        },
+                          child: Container(
+                            width: 22,
+                            height: 20,
+                            child: Icon(Icons.logout)
+                            //Image.asset(
+                              //'assets/menu.png',
+                            //),
                           ),
                         ),
                       ),

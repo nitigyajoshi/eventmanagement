@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newevent/controller/data_controller.dart';
 import 'package:newevent/utils/color.dart';
 import 'package:newevent/views/widgets/my_widgets.dart';
 
@@ -63,49 +64,116 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool isNotEditable = true;
   
   
-  //DataController? dataController;
+ DataController? dataController;
 
   int? followers = 0,following=0;
   String image = '';
+ Future<bool> isUserCollectionExist() async {
+    try {
+      QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('users').limit(1).get();
+      return snapshot.docs.isNotEmpty; // If the collection has at least one document, it exists
+    } catch (e) {
+      print('Error checking user collection existence: $e');
+      return false;
+    }
+  }
+  Future<void> loadUserData() async {
+  try {
+      bool isCollectionExist = await isUserCollectionExist();
+print('usercoll$isCollectionExist');
+    await fetchUserDocument();
+    // Access userData after fetchUserDocument has completed
+    // Set the text controllers here
+    firstNameController.text = userData!['first'];
+    lastNameController.text = userData!['last'];
+    descriptionController.text = userData!['desc'] ?? '';
+    // Other controller assignments...
+  } catch (e) {
+    // Handle errors if any
+    print('Error loading user data: $e');
+  }
+}
+  Future<void> fetchUserDocument() async {
+    User? user = FirebaseAuth.instance.currentUser;
 
+    if (user != null) {
+      DocumentReference userDocRef = FirebaseFirestore.instance.collection('users').doc(user.uid);
+      DocumentSnapshot docSnapshot = await userDocRef.get();
+print('doc snap $docSnapshot');
+      if (docSnapshot.exists) {
+        print('exist.......');
+         userData = docSnapshot.data() as Map<String, dynamic>?;
+         print('userdata${userData}');
+        setState(() {
+         
+        });
+     //   return docSnapshot;
+      } else {
+        throw StateError('No user document found for the given uid');
+      }
+    } else {
+      throw StateError('User is not authenticated');
+    }
+  }
+   Map<String, dynamic>? userData;
   @override
   initState(){
+    
     super.initState();
-    // dataController = Get.find<DataController>();
 
-    // firstNameController.text = dataController!.myDocument!.get('first');
-    // lastNameController.text = dataController!.myDocument!.get('last');
+    loadUserData();
+    //fetchUserDocument();
 
-    // try{
-    //   descriptionController.text = dataController!.myDocument!.get('desc');
-    // }catch(e){
-    //   descriptionController.text = '';
-    // }
+    // DocumentSnapshot? myDocument;
+     print(FirebaseAuth.instance.currentUser!.uid);
+     print('userData$userData');
+    dataController = Get.find<DataController>();
 
-    // try{
-    //   image = dataController!.myDocument!.get('image');
-    // }catch(e){
-    //   image = '';
-    // }
+    firstNameController.text = userData?['first']??'';
+    //dataController?.get('first');
+    lastNameController.text = 
+    userData?['last']??'';
+    //dataController!.myDocument?.get('last');
 
-    // try{
-    //   locationController.text = dataController!.myDocument!.get('location');
-    // }catch(e){
-    //   locationController.text = '';
-    // }
+    try{
+      descriptionController.text =userData?['desc']??'';
+      // dataController!.myDocument!.get('desc');
+    }catch(e){
+      descriptionController.text = ''??'';
+    }
+
+    try{
+      image = userData?['image']??'';
+      
+      //dataController!.myDocument!.get('image');
+    }catch(e){
+      image = '';
+    }
+
+    try{
+      locationController.text = userData?['location']??'';
+      
+      //dataController!.myDocument!.get('location');
+    }catch(e){
+      locationController.text = '';
+    }
 
 
-    // try{
-    //   followers = dataController!.myDocument!.get('followers').length;
-    // }catch(e){
-    //   followers = 0;
-    // }
+    try{
+      followers =
+      userData?['followers'].length??0;
+      // dataController!.myDocument!.get('followers').length;
+    }catch(e){
+      followers = 0;
+    }
 
-    // try{
-    //   following = dataController!.myDocument!.get('following').length;
-    // }catch(e){
-    //   following = 0;
-    // }
+    try{
+      following = userData?['following']??0;
+      
+      //dataController!.myDocument!.get('following').length;
+    }catch(e){
+      following = 0;
+    }
 
 
 
@@ -115,6 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     var screenheight = MediaQuery.of(context).size.height;
     var screenwidth = MediaQuery.of(context).size.width;
+   
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -141,7 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       Image(
-                        image: AssetImage('assets/menu.png'),
+                        image:AssetImage('assets/menu.png'),
                         width: 23.33,
                         height: 19,
                       ),
@@ -201,19 +270,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(70),
                               ),
-                              child: image.isEmpty? CircleAvatar(
+                              child: image.isNotEmpty? CircleAvatar(
                                 radius: 56,
                                 backgroundColor: Colors.white,
-                                backgroundImage: AssetImage(
-                                  'assets/profile.png',
+                                backgroundImage: NetworkImage(
+                                  image,
                                 )
                               ): CircleAvatar(
                                   radius: 56,
                                   backgroundColor: Colors.white,
-                                  backgroundImage: NetworkImage(
-                                   image,
+                                 child: Icon(Icons.person),
                                   )
-                              ),
+                              
                               // child: Image.asset(
                               //   'assets/profilepic.png',
                               //   fit: BoxFit.contain,

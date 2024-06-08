@@ -52,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   if (image != null) {
                     profileImage = File(image.path);
                     setState(() {});
-                    Navigator.pop(context);
+                 //   Navigator.pop(context);
                   }
 
                 },

@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newevent/controller/data_controller.dart';
+import 'package:newevent/views/bottom_nav_bar/bottom_bar_view.dart';
 import 'package:newevent/views/onboarding_screen.dart';
 
 void main() async
@@ -84,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       home: 
       //FirebaseAuth.instance.currentUser == null? 
-      OnBoardingScreen() 
+ FirebaseAuth.instance.currentUser?.uid==null?     OnBoardingScreen() :BottomBarView()
       //: BottomBarView(),
     );
       
