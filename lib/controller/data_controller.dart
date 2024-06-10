@@ -124,7 +124,9 @@ class DataController extends GetxController{
   var isUsersLoading = false.obs;
 
   getUsers(){
-    isUsersLoading(true);
+    isUsersLoading.value=true;
+    
+    //(true);
     FirebaseFirestore.instance.collection('users').snapshots().listen((event) {
       allUsers.value = event.docs;
       filteredUsers.value.assignAll(allUsers);
@@ -134,7 +136,9 @@ class DataController extends GetxController{
 
 
   getEvents(){
-    isEventsLoading(true);
+    isEventsLoading.value=true;
+    
+    //(true);
 
     FirebaseFirestore.instance.collection('events').snapshots().listen((event) {
       allEvents.assignAll(event.docs);

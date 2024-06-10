@@ -11,7 +11,7 @@ void main() async
 {
 WidgetsFlutterBinding.ensureInitialized();
 await Firebase.initializeApp();
-Get.put(DataController());
+// Get.put(DataController());
   runApp(const MyApp());
 }
 
@@ -79,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return GetMaterialApp(
       theme: ThemeData(
         textTheme: GoogleFonts.latoTextTheme(
+
           Theme.of(context).textTheme, // If this is not set, then ThemeData.light().textTheme is used.
         ),
       ),
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       home: 
       //FirebaseAuth.instance.currentUser == null? 
- FirebaseAuth.instance.currentUser?.uid==null?     OnBoardingScreen() :BottomBarView()
+ FirebaseAuth.instance.currentUser?.uid==null? OnBoardingScreen() :BottomBarView()
       //: BottomBarView(),
     );
       

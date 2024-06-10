@@ -15,10 +15,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  DataController dataController = Get.find<DataController>();
+  //Get.put(DataController());
+
+  // DataController dataController = Get.find<DataController>();
 
   @override
   Widget build(BuildContext context) {
+    Get.put(DataController());
+    DataController dataController = Get.find<DataController>();
     return Scaffold(
       backgroundColor: Colors.black.withOpacity(0.03),
       body: SafeArea(
@@ -42,8 +46,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: Get.height * 0.02,
                 ),
                 EventsFeed(),
-                Obx(()=> dataController.isUsersLoading.value? Center(
-                  child: CircularProgressIndicator(),) : EventsIJoined())
+                  Obx(()=> dataController.isUsersLoading.value? Center(child: CircularProgressIndicator(),) : EventsIJoined())
+              //  Obx(()=> dataController.isUsersLoading.value? CircularProgressIndicator() :
+             //Text('data')
+                //  EventsIJoined()
+                  
+                 // ??Container()
+                  
+                //  )
+
+//            Obx(() {
+//   if (dataController.allUsers==null) {
+//     return Center(
+//       child: CircularProgressIndicator(),
+//     );
+//   } else {
+//     return EventsIJoined(); // Ensure EventsIJoined() is a valid widget
+//   }
+// })
               ],
             ),
           ),

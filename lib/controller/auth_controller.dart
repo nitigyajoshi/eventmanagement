@@ -5,7 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:newevent/controller/data_controller.dart';
+import 'package:newevent/views/auth/login_signup.dart';
 import 'package:newevent/views/bottom_nav_bar/bottom_bar_view.dart';
+import 'package:newevent/views/widgets/events_feed_widget.dart';
 
 
 import '../views/profile/add_profile.dart';
@@ -128,7 +131,17 @@ print('user created........');
       'gender': gender
     }).then((value) {
       isProfileInformationLoading(false);
-      Get.offAll(()=> BottomBarView());
+    
+   // Get.offAllNamed(()=>BottomBarView())
+   //EventsIJoined();
+   //Get.toNamed(LoginView())
+ Get.offAll(LoginView());
+ 
+      // Get.offAll(()=> BottomBarView(),binding:
+      // BindingsBuilder(() {
+      //         Get.lazyPut<DataController>(() => DataController());
+      //       })
+      //  );
     });
 
   }

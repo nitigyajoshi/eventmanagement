@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:newevent/controller/auth_controller.dart';
+import 'package:newevent/controller/data_controller.dart';
 import 'package:newevent/utils/color.dart';
 import 'package:newevent/views/profile/add_profile.dart';
 import 'package:newevent/views/widgets/my_widgets.dart';
@@ -264,9 +265,11 @@ class _LoginViewState extends State<LoginView> {
                 if(!formKey.currentState!.validate()){
                   return;
                 }
-
+Get.put(DataController());
                 authController.login(email: emailController.text.trim(),password: passwordController.text.trim());
-
+   setState(() {
+     
+    }); 
 
               },
             ),

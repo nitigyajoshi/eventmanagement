@@ -36,6 +36,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
           child: Column(
             children: [
             //  iconWithTitle(func: () {}, text: 'Community',),
+            SizedBox(height: 35,),
               Container(
                 height: 50,
                 decoration: BoxDecoration(
