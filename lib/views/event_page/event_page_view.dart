@@ -144,14 +144,15 @@ int likes = 0;
                       SizedBox(
                         height: 2,
                       ),
-                      Text(
+        widget.user.get('location')==''?   
+                   Text(
                         "${widget.user.get('location')}",
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey,
                           fontWeight: FontWeight.w400,
                         ),
-                      ),
+                      ):Text(''),
                     ],
                   ),
                   Spacer(),
